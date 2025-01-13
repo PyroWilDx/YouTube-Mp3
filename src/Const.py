@@ -1,0 +1,1 @@
+ffMpeg = "bin/ffmpeg.exe"
