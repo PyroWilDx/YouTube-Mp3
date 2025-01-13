@@ -19,9 +19,9 @@ for userVid in userVids:
     srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vLink, imgName, outDir)
     print(f"Finished Downloading Image {userVid.vLink} ({srcImgPath}).")
 
-    print(f"Upscaling Image {userVid.vLink}...")
+    print(f"UpScaling Image {userVid.vLink}...")
     ImageScaler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
-    print(f"Finished Upscaling Image {userVid.vLink} ({dstImgPath}).")
+    print(f"Finished UpScaling Image {userVid.vLink} ({dstImgPath}).")
 
     # os.remove(srcImgPath)
     # os.remove(dstImgPath)
