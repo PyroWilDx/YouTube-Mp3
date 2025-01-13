@@ -1,12 +1,26 @@
+import os
+
+import ImageClient
 import VidLink
-import YouTubeDownloader
+import YouTubeClient
+
+outDir = "out"
+imgName = "Image"
 
 userVids = VidLink.ReadVidLink()
 for userVid in userVids:
-    print(f"Downloading {userVid.vLink}...")
-    YouTubeDownloader.dlMp3(userVid.vLink, userVid.vFileName)
-    print(f"Finished Downloading {userVid.vLink}.")
+    print(f"Downloading Video {userVid.vLink}...")
+    vFilePath = YouTubeClient.yDlMp3(userVid.vLink, userVid.vFileName, outDir)
+    print(f"Finished Downloading Video {userVid.vLink} ({vFilePath}).")
 
-    print(f"Upscaling {userVid.vLink} Image...")
+    print(f"Downloading Image {userVid.vLink}...")
+    iFilePath = ImageClient.yDlImage(userVid.vLink, imgName, outDir)
+    print(f"Finished Downloading Image {userVid.vLink} ({iFilePath}).")
 
-    print(f"Finished Upscaling {userVid.vLink} Image.")
+    print(f"Upscaling Image {userVid.vLink}...")
+
+    print(f"Finished Upscaling Image {userVid.vLink}.")
+
+    # os.remove(iFilePath)
+
+    print()
