@@ -7,36 +7,39 @@ import VidLink
 import YouTubeClient
 
 outDir = "out"
-imgName = "Image"
-imgWidth = 3200
+imgNameDefault = "Image"
+imgWidthDefault = 3200
 
 userVids = VidLink.ReadVidLink()
 for userVid in userVids:
-    print(f"Downloading Video {userVid.vLink}...")
+    print(f"Downloading Video {userVid.vidLink}...")
     vFilePath = ""
     while True:
         try:
-            vFilePath = YouTubeClient.yDlMp3(userVid.vLink, userVid.vFileName, outDir)
+            vFilePath = YouTubeClient.yDlMp3(userVid.vidLink, userVid.vidTitle, outDir)
             break
         except yt_dlp.utils.DownloadError:
-            print(f"Failed To Download Video {userVid.vLink} - Retrying...")
+            print(f"Failed To Download Video {userVid.vidLink} - Retrying...")
             continue
-    print(f"Finished Downloading Video {userVid.vLink} ({vFilePath}).")
+    print(f"Finished Downloading Video {userVid.vidLink} ({vFilePath}).")
 
-    print(f"Downloading Image {userVid.vLink}...")
+    print(f"Downloading Image {userVid.vidLink}...")
     srcImgPath, dstImgPath = "", ""
     while True:
         try:
-            srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vLink, imgName, outDir)
+            srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vidLink, imgNameDefault, outDir)
             break
         except yt_dlp.utils.DownloadError:
-            print(f"Failed To Download Image {userVid.vLink} - Retrying...")
+            print(f"Failed To Download Image {userVid.vidLink} - Retrying...")
             continue
-    print(f"Finished Downloading Image {userVid.vLink} ({srcImgPath}).")
+    print(f"Finished Downloading Image {userVid.vidLink} ({srcImgPath}).")
 
-    print(f"UpScaling Image {userVid.vLink}...")
+    print(f"UpScaling Image {userVid.vidLink}...")
+    imgWidth = imgWidthDefault
+    if userVid.imgWidth is not None:
+        imgWidth = userVid.imgWidth
     ImageHandler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
-    print(f"Finished UpScaling Image {userVid.vLink} ({dstImgPath}).")
+    print(f"Finished UpScaling Image {userVid.vidLink} ({dstImgPath}).")
 
     print(f"Applying Image To {vFilePath}...")
     ImageHandler.applyImage(dstImgPath, vFilePath, outDir)

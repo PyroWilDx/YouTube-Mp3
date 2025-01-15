@@ -4,7 +4,7 @@ import yt_dlp
 import Const
 
 
-def yDlMp3(vLink, vFileName, outDir):
+def yDlMp3(vidLink, vFileName, outDir):
     yDlFilePath = ""
 
     def pHook(p):
@@ -29,7 +29,7 @@ def yDlMp3(vLink, vFileName, outDir):
     }
 
     with yt_dlp.YoutubeDL(yDlOptions) as yDl:
-        yDl.download([vLink])
+        yDl.download([vidLink])
 
     if yDlFilePath and vFileName:
         vFilePath = os.path.join(outDir, f"{vFileName}.mp3")

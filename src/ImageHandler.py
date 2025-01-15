@@ -4,13 +4,13 @@ import subprocess
 import Const
 
 
-def upScaleImage(srcImgPath, dstImgPath, w):
+def upScaleImage(srcImgPath, dstImgPath, imgWidth):
     cmd = ["bin/UpScayl/upscayl-bin.exe"]
 
     cmd.extend(["-i", srcImgPath])
     cmd.extend(["-o", dstImgPath])
     cmd.extend(["-n", "realesr-animevideov3-x4"])
-    cmd.extend(["-w", str(w)])
+    cmd.extend(["-w", str(imgWidth)])
 
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
