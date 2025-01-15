@@ -4,7 +4,7 @@ import yt_dlp
 import Const
 
 
-def yDlImage(vLink, vFileName, outDir):
+def yDlImage(vidLink, vFileName, outDir):
     yDlOptions = {
         "ffmpeg_location": Const.ffMpeg,
         "outtmpl": f"{outDir}/{vFileName}.%(ext)s",
@@ -14,6 +14,6 @@ def yDlImage(vLink, vFileName, outDir):
     }
 
     with yt_dlp.YoutubeDL(yDlOptions) as yDl:
-        yDl.download([vLink])
+        yDl.download([vidLink])
 
     return os.path.join(outDir, vFileName + ".webp"), os.path.join(outDir, vFileName + ".jpg")
