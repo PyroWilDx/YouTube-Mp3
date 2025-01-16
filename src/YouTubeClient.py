@@ -4,7 +4,7 @@ import yt_dlp
 import Const
 
 
-def yDlMp3(vidLink, vFileName, outDir):
+def yDlMp3(vidLink, vidTitle, outDir):
     yDlFilePath = ""
 
     def pHook(p):
@@ -31,14 +31,14 @@ def yDlMp3(vidLink, vFileName, outDir):
     with yt_dlp.YoutubeDL(yDlOptions) as yDl:
         yDl.download([vidLink])
 
-    if yDlFilePath and vFileName:
-        vFilePath = os.path.join(outDir, f"{vFileName}.mp3")
+    if vidTitle and yDlFilePath:
+        vFilePath = os.path.join(outDir, f"{vidTitle}.mp3")
         if not os.path.exists(vFilePath):
             os.rename(yDlFilePath, vFilePath)
-            print(f"Renamed File To {vFileName}.mp3.")
+            print(f"Renamed File To {vidTitle}.mp3.")
             return vFilePath
         else:
-            print(f"Couldn't Rename File To {vFileName}.mp3 (It Already Exists).")
+            print(f"Couldn't Rename File To {vidTitle}.mp3 (It Already Exists).")
 
     return yDlFilePath
 
