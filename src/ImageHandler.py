@@ -10,7 +10,7 @@ def upScaleImage(srcImgPath, dstImgPath, imgWidth):
     cmd.extend(["-i", srcImgPath])
     cmd.extend(["-o", dstImgPath])
     cmd.extend(["-n", "realesr-animevideov3-x4"])
-    cmd.extend(["-w", str(imgWidth)])
+    cmd.extend(["-w", imgWidth])
 
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 

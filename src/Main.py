@@ -1,4 +1,5 @@
 import os
+import urllib.error
 import yt_dlp
 
 import ImageClient
@@ -6,12 +7,20 @@ import ImageHandler
 import VidLink
 import YouTubeClient
 
-outDir = "out"
+outDir = "Out"
 imgNameDefault = "Image"
-imgWidthDefault = 3200
+imgWidthDefault = "3200"
 
 userVids = VidLink.ReadVidLink()
+print(f"Found {len(userVids)} Videos - Starting Download...")
+
 for userVid in userVids:
+    print()
+
+    if os.path.exists(os.path.join(outDir, f"{userVid.vidTitle}.mp3")):
+        print(f"Skipping {userVid.vidTitle}.mp3 (Already Exists).")
+        continue
+
     print(f"Downloading Video {userVid.vidLink}...")
     vFilePath = ""
     while True:
@@ -25,13 +34,20 @@ for userVid in userVids:
 
     print(f"Downloading Image {userVid.vidLink}...")
     srcImgPath, dstImgPath = "", ""
-    while True:
+    if userVid.imgLink is not None:
         try:
-            srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vidLink, imgNameDefault, outDir)
-            break
-        except yt_dlp.utils.DownloadError:
-            print(f"Failed To Download Image {userVid.vidLink} - Retrying...")
-            continue
+            srcImgPath, dstImgPath = ImageClient.dlImage(userVid.imgLink, outDir)
+            print()
+        except (Exception,):
+            print(f"Failed To Download Image {userVid.imgLink}. Skipping.")
+    else:
+        while True:
+            try:
+                srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vidLink, imgNameDefault, outDir)
+                break
+            except yt_dlp.utils.DownloadError:
+                print(f"Failed To Download Image {userVid.vidLink} - Retrying...")
+                continue
     print(f"Finished Downloading Image {userVid.vidLink} ({srcImgPath}).")
 
     print(f"UpScaling Image {userVid.vidLink}...")
@@ -47,5 +63,3 @@ for userVid in userVids:
 
     os.remove(srcImgPath)
     os.remove(dstImgPath)
-
-    print()
