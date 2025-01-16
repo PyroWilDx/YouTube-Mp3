@@ -2,17 +2,22 @@ import os
 import yt_dlp
 
 import Const
+import Utils
+
+
+def isYouTubeLink(vidLink):
+    return ("youtube.com/" in vidLink) or ("youtu.be/" in vidLink)
 
 
 def yDlMp3(vidLink, vidTitle, outDir):
-    yDlFilePath = ""
+    yDlVidPath = ""
 
     def pHook(p):
-        nonlocal yDlFilePath
+        nonlocal yDlVidPath
         if p["status"] == "finished":
-            yDlFilePath = p["info_dict"]["_filename"]
-            yDlFilePath = clearExtension(yDlFilePath)
-            yDlFilePath += ".mp3"
+            yDlVidPath = p["info_dict"]["_filename"]
+            yDlVidPath = Utils.clearExtension(yDlVidPath)
+            yDlVidPath += ".mp3"
 
     yDlOptions = {
         "ffmpeg_location": Const.ffMpeg,
@@ -31,20 +36,13 @@ def yDlMp3(vidLink, vidTitle, outDir):
     with yt_dlp.YoutubeDL(yDlOptions) as yDl:
         yDl.download([vidLink])
 
-    if vidTitle and yDlFilePath:
-        vFilePath = os.path.join(outDir, f"{vidTitle}.mp3")
-        if not os.path.exists(vFilePath):
-            os.rename(yDlFilePath, vFilePath)
+    if vidTitle and yDlVidPath:
+        vidPath = os.path.join(outDir, f"{vidTitle}.mp3")
+        if not os.path.exists(vidPath):
+            os.rename(yDlVidPath, vidPath)
             print(f"Renamed File To {vidTitle}.mp3.")
-            return vFilePath
+            return vidPath
         else:
             print(f"Couldn't Rename File To {vidTitle}.mp3 (It Already Exists).")
 
-    return yDlFilePath
-
-
-def clearExtension(fileName):
-    lastDotIndex = fileName.rfind(".")
-    if lastDotIndex == -1:
-        return fileName
-    return fileName[:lastDotIndex]
+    return yDlVidPath
