@@ -5,7 +5,9 @@ def ReadVidLink():
     userVids = []
     with open("VidLink.txt") as vidLinkFile:
         for v in vidLinkFile:
-            if len(v) == 0:
+            if len(v) == 0 or v[0] == "\n":
+                continue
+            if v.startswith("#"):
                 continue
 
             vSplit = shlex.split(v)
