@@ -1,9 +1,10 @@
 import os
-import urllib.error
 import yt_dlp
 
+import AudioClient
 import ImageClient
 import ImageHandler
+import Utils
 import VidLink
 import YouTubeClient
 
@@ -21,16 +22,31 @@ for userVid in userVids:
         print(f"Skipping {userVid.vidTitle}.mp3 (Already Exists).")
         continue
 
-    print(f"Downloading Video {userVid.vidLink}...")
-    vFilePath = ""
-    while True:
-        try:
-            vFilePath = YouTubeClient.yDlMp3(userVid.vidLink, userVid.vidTitle, outDir)
-            break
-        except yt_dlp.utils.DownloadError:
-            print(f"Failed To Download Video {userVid.vidLink} - Retrying...")
+    isYouTubeLink = YouTubeClient.isYouTubeLink(userVid.vidLink)
+
+    if not isYouTubeLink:
+        vidPath = os.path.join(outDir, f"{Utils.clearExtension(os.path.basename(userVid.vidLink))}.mp3")
+        if os.path.exists(vidPath):
+            print(f"Skipping {userVid.vidLink} (Already Exists).")
             continue
-    print(f"Finished Downloading Video {userVid.vidLink} ({vFilePath}).")
+
+    print(f"Downloading Video {userVid.vidLink}...")
+    vidPath = ""
+    if not isYouTubeLink:
+        vidPath = AudioClient.dlAudio(userVid.vidLink, userVid.vidTitle, outDir)
+        print()
+    else:
+        while True:
+            try:
+                vidPath = YouTubeClient.yDlMp3(userVid.vidLink, userVid.vidTitle, outDir)
+                break
+            except yt_dlp.utils.DownloadError:
+                print(f"Failed To Download Video {userVid.vidLink} - Retrying...")
+                continue
+    print(f"Finished Downloading Video {userVid.vidLink} ({vidPath}).")
+
+    if (not isYouTubeLink) and (not userVid.imgLink):
+        continue
 
     print(f"Downloading Image {userVid.vidLink}...")
     srcImgPath, dstImgPath = "", ""
@@ -57,9 +73,9 @@ for userVid in userVids:
     ImageHandler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
     print(f"Finished UpScaling Image {userVid.vidLink} ({dstImgPath}).")
 
-    print(f"Applying Image To {vFilePath}...")
-    ImageHandler.applyImage(dstImgPath, vFilePath, outDir)
-    print(f"Finished Applying Image To {vFilePath}.")
+    print(f"Applying Image To {vidPath}...")
+    ImageHandler.applyImage(dstImgPath, vidPath, outDir)
+    print(f"Finished Applying Image To {vidPath}.")
 
     os.remove(srcImgPath)
     os.remove(dstImgPath)
