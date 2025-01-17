@@ -1,6 +1,6 @@
 import os
+import requests
 import shutil
-import wget
 import yt_dlp
 
 import Const
@@ -24,12 +24,17 @@ def yDlImage(vidLink, vFileName, outDir):
 
 
 def dlImage(imgLink, outDir):
-    wget.download(imgLink)
+    r = requests.get(imgLink, headers=Const.rHeaders, stream=True)
 
-    dlImgPath = os.path.basename(imgLink)
-    srcImgPath = os.path.join(outDir, dlImgPath)
-    dstImgPath = os.path.join(outDir, f"{dlImgPath}.png")
+    if r.status_code == 200:
+        dlImgPath = os.path.basename(imgLink)
+        srcImgPath = os.path.join(outDir, dlImgPath)
+        dstImgPath = os.path.join(outDir, f"{dlImgPath}.png")
 
-    shutil.move(dlImgPath, str(srcImgPath))
+        with open(srcImgPath, 'wb') as dlImg:
+            for chunk in r.iter_content(1024):
+                dlImg.write(chunk)
 
-    return srcImgPath, dstImgPath
+        return srcImgPath, dstImgPath
+    else:
+        raise Exception()
