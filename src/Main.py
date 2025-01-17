@@ -33,15 +33,18 @@ for userVid in userVids:
     print(f"Downloading Video {userVid.vidLink}...")
     vidPath = ""
     if not isYouTubeLink:
-        vidPath = AudioClient.dlAudio(userVid.vidLink, userVid.vidTitle, outDir)
-        print()
+        try:
+            vidPath = AudioClient.dlAudio(userVid.vidLink, userVid.vidTitle, outDir)
+        except (Exception,):
+            print(f"Failed To Download Audio {userVid.vidLink}. Skipping.")
+            continue
     else:
         while True:
             try:
                 vidPath = YouTubeClient.yDlMp3(userVid.vidLink, userVid.vidTitle, outDir)
                 break
             except yt_dlp.utils.DownloadError:
-                print(f"Failed To Download Video {userVid.vidLink} - Retrying...")
+                print(f"Failed To Download Video {userVid.vidLink}. Retrying...")
                 continue
     print(f"Finished Downloading Video {userVid.vidLink} ({vidPath}).")
 
@@ -53,9 +56,9 @@ for userVid in userVids:
     if userVid.imgLink is not None:
         try:
             srcImgPath, dstImgPath = ImageClient.dlImage(userVid.imgLink, outDir)
-            print()
         except (Exception,):
             print(f"Failed To Download Image {userVid.imgLink}. Skipping.")
+            continue
     else:
         while True:
             try:

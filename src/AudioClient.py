@@ -1,15 +1,22 @@
 import os
+import requests
 import subprocess
-import wget
 
 import Const
 import Utils
 
 
 def dlAudio(vidLink, vidTitle, outDir):
-    wget.download(vidLink)
+    r = requests.get(vidLink, headers=Const.rHeaders, stream=True)
 
-    dlVidPath = os.path.basename(vidLink)
+    if r.status_code == 200:
+        dlVidPath = os.path.basename(vidLink)
+        with open(dlVidPath, 'wb') as dlVid:
+            for chunk in r.iter_content(1024):
+                dlVid.write(chunk)
+    else:
+        raise Exception()
+
     if vidTitle:
         vidPath = os.path.join(outDir, f"{vidTitle}.mp3")
     else:
