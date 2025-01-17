@@ -22,9 +22,9 @@ Below is a list of the available options.
 > [!NOTE]
 > **Example**
 >
-> For the entry `https://youtu.be/oA0CpI0vCK4 Title="Mumei" ImgLink="https://images.pexels.com/photos/20787/pexels-photo.jpg" ImgWidth="3600"`.
+> For the entry `https://youtu.be/oA0CpI0vCK4 Title="Mumei" ImgLink="https://wallpapercave.com/wp/wp9799581.png" ImgWidth="3600"`.
 > - The video `https://youtu.be/oA0CpI0vCK4` will be downloaded as an audio file named `Mumei.mp3`.
-> - The audio file will include an embedded image sourced from `https://images.pexels.com/photos/20787/pexels-photo.jpg`.
+> - The audio file will include an embedded image sourced from `https://wallpapercave.com/wp/wp9799581.png`.
 > - The embedded image will have a width of `3600` pixels.
 
 ## Development Set-Up
