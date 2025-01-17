@@ -73,12 +73,16 @@ for userVid in userVids:
     imgWidth = imgWidthDefault
     if userVid.imgWidth is not None:
         imgWidth = userVid.imgWidth
-    ImageHandler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
+    upScaledImgPath = ImageHandler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
     print(f"Finished UpScaling Image {userVid.vidLink} ({dstImgPath}).")
 
     print(f"Applying Image To {vidPath}...")
-    ImageHandler.applyImage(dstImgPath, vidPath, outDir)
+    ImageHandler.applyImage(upScaledImgPath, vidPath, outDir)
     print(f"Finished Applying Image To {vidPath}.")
 
     os.remove(srcImgPath)
     os.remove(dstImgPath)
+    os.remove(upScaledImgPath)
+
+print("\nPress Enter...")
+input()
