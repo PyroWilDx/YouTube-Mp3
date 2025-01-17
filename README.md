@@ -4,6 +4,15 @@
 
 ## App Set-Up
 
+### How To Use
+
+- [Download YouTube-Mp3](#download).
+- Extract `YouTube-Mp3.zip`.
+- [Configurate YouTube-Mp3](#configuration).
+- Run `YouTube-Mp3.exe`.
+
+The downloaded audio files will be saved in the `Out/` folder.
+
 ### Configuration
 
 The configuration file is located at [`VideoList.txt`](./VideoList.txt). This file must be modified to include the links to the desired videos, with one video per line. Additionally, each video can have specific options specified after the video link. Options should be separated by a space and written in the format `Option="Value"`.
@@ -26,6 +35,15 @@ Below is a list of the available options.
 > - The video `https://youtu.be/oA0CpI0vCK4` will be downloaded as an audio file named `Mumei.mp3`.
 > - The audio file will include an embedded image sourced from `https://wallpapercave.com/wp/wp9799581.png`.
 > - The embedded image will have a width of `3600` pixels.
+
+## Download
+
+<div align="center">
+
+| [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" width="60"/>](https://www.mediafire.com/file/1f6n234zxkrw4e6/YouTube-Mp3.zip/) |
+|---|
+
+</div>
 
 ## Development Set-Up
 
