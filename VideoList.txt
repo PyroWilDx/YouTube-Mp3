@@ -2,10 +2,10 @@
 
 https://www.youtube.com/watch?v=oA0CpI0vCK4 Title="Mumei"
 
-https://www.youtube.com/watch?v=j6P_m6adkgc ImgLink="https://lh3.googleusercontent.com/mNiecoLZobfuVoFl_LAwfncaaxnoXk0P8VWkKhtqp9lLRuVZlywLEH8i3rQ1hc-mqAUYWiKDdbGy0Nw"
+https://www.youtube.com/watch?v=j6P_m6adkgc ImgLink="https://hololive.hololivepro.com/wp-content/uploads/2021/04/unnamed-file-2-1000x1000.png"
 
 https://www.youtube.com/watch?v=nCQ_zZIiGLA ImgWidth="2222"
 
-https://youtu.be/icVtR9ZCsdg Title="Polka Owaruka" ImgLink="https://static.wikia.nocookie.net/virtualyoutuber/images/3/39/Omaru_Polka_Clown_Nose_Zain_Accessories_by_%E3%81%91%E3%81%A3%E3%81%B5%E3%81%83.jpg" ImgWidth="3600"
+https://youtu.be/icVtR9ZCsdg Title="Polka Owaruka" ImgLink="https://wallpapercave.com/wp/wp9383291.jpg" ImgWidth="2222"
 
-https://a.animethemes.moe/TokyoGhoul-OP1.ogg Title="Unravel" ImgLink="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx20605-fmnHdfurM7m6.jpg" ImgWidth="2000"
+https://a.animethemes.moe/TokyoGhoul-OP1.ogg Title="Unravel" ImgLink="https://wallpapercave.com/wp/wp9880726.jpg" ImgWidth="2222"
