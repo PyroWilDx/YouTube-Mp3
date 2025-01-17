@@ -1,4 +1,4 @@
-# Please Read https://github.com/PyroWilDx/YouTube-Mp3#Video-List
+# Please Read https://github.com/PyroWilDx/YouTube-Mp3#Configuration
 
 https://www.youtube.com/watch?v=oA0CpI0vCK4 Title="Mumei"
 
