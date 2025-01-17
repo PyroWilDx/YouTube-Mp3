@@ -1,9 +1,9 @@
 import shlex
 
 
-def ReadVidLink():
+def ReadVideoList():
     userVids = []
-    with open("VidLink.txt") as vidLinkFile:
+    with open("VideoList.txt") as vidLinkFile:
         for v in vidLinkFile:
             if len(v) == 0 or v[0] == "\n":
                 continue
