@@ -5,14 +5,14 @@ import AudioClient
 import ImageClient
 import ImageHandler
 import Utils
-import VidLink
+import VideoListReader
 import YouTubeClient
 
 outDir = "Out"
 imgNameDefault = "Image"
 imgWidthDefault = "3200"
 
-userVids = VidLink.ReadVidLink()
+userVids = VideoListReader.ReadVideoList()
 print(f"Found {len(userVids)} Videos - Starting Download...")
 
 for userVid in userVids:
