@@ -52,36 +52,35 @@ for userVid in userVids:
         continue
 
     print(f"Downloading Image {userVid.vidLink}...")
-    srcImgPath, dstImgPath = "", ""
+    imgPath = ""
     if userVid.imgLink is not None:
         try:
-            srcImgPath, dstImgPath = ImageClient.dlImage(userVid.imgLink, outDir)
+            imgPath = ImageClient.dlImage(userVid.imgLink, outDir)
         except (Exception,):
             print(f"Failed To Download Image {userVid.imgLink}. Skipping.")
             continue
     else:
         while True:
             try:
-                srcImgPath, dstImgPath = ImageClient.yDlImage(userVid.vidLink, imgNameDefault, outDir)
+                imgPath = ImageClient.yDlImage(userVid.vidLink, imgNameDefault, outDir)
                 break
             except yt_dlp.utils.DownloadError:
                 print(f"Failed To Download Image {userVid.vidLink} - Retrying...")
                 continue
-    print(f"Finished Downloading Image {userVid.vidLink} ({srcImgPath}).")
+    print(f"Finished Downloading Image {userVid.vidLink} ({imgPath}).")
 
     print(f"UpScaling Image {userVid.vidLink}...")
     imgWidth = imgWidthDefault
     if userVid.imgWidth is not None:
         imgWidth = userVid.imgWidth
-    upScaledImgPath = ImageHandler.upScaleImage(srcImgPath, dstImgPath, imgWidth)
-    print(f"Finished UpScaling Image {userVid.vidLink} ({dstImgPath}).")
+    upScaledImgPath = ImageHandler.upScaleImage(imgPath, imgWidth)
+    print(f"Finished UpScaling Image {userVid.vidLink} ({imgPath}).")
 
     print(f"Applying Image To {vidPath}...")
     ImageHandler.applyImage(upScaledImgPath, vidPath, outDir)
     print(f"Finished Applying Image To {vidPath}.")
 
-    os.remove(srcImgPath)
-    os.remove(dstImgPath)
+    os.remove(imgPath)
     os.remove(upScaledImgPath)
 
 print("\nPress Enter...")
