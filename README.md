@@ -15,7 +15,7 @@ The downloaded audio files will be saved in the `Out/` folder.
 
 ### Configuration
 
-The configuration file is located at [`VideoList.txt`](./VideoList.txt). This file must be modified to include the links to the desired videos, with one video per line. Additionally, each video can have specific options specified after the video link. Options should be separated by a space and written in the format `Option="Value"`.
+The configuration file is located at [`VidList.txt`](./VidList.txt). This file must be modified to include the links to the desired videos, with one video per line. Additionally, each video can have specific options specified after the video link. Options should be separated by a space and written in the format `Option="Value"`.
 
 > [!IMPORTANT]
 > Do not forget to enclose each value in double quotes.
