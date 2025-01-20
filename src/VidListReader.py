@@ -20,6 +20,10 @@ def ReadVidList():
 def ReadParams(userVid, vParams):
     for vParam in vParams:
         pName, pValue = vParam.split("=", 1)
+
+        if len(pValue) == 0:
+            continue
+
         if pName == "Title":
             userVid.vidTitle = pValue
         elif pName == "ImgLink":
