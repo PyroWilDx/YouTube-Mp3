@@ -26,6 +26,8 @@ def ReadParams(userVid, vParams):
             userVid.imgLink = pValue
         elif pName == "ImgWidth":
             userVid.imgWidth = pValue
+        elif pName == "ImgFormat":
+            userVid.imgFormat = pValue
     return userVid
 
 
@@ -35,6 +37,7 @@ class Video:
         self.vidTitle = None
         self.imgLink = None
         self.imgWidth = None
+        self.imgFormat = None
 
     def __str__(self):
         r = self.vidLink
@@ -44,4 +47,6 @@ class Video:
             r += f" | ImgLink={self.imgLink}"
         if self.imgWidth is not None:
             r += f" | ImgWidth={self.imgWidth}"
+        if self.imgFormat is not None:
+            r += f" | ImgFormat={self.imgFormat}"
         return r
