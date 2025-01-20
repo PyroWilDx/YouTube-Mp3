@@ -27,7 +27,7 @@ def ReadParams(userVid, vParams):
         elif pName == "ImgWidth":
             userVid.imgWidth = pValue
         elif pName == "ImgFormat":
-            userVid.imgFormat = pValue
+            userVid.imgFormat = pValue.lower()
     return userVid
 
 
