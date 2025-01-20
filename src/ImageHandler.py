@@ -2,25 +2,27 @@ import os
 import subprocess
 
 import Const
-import Utils
 
 
-def upScaleImage(srcImgPath, dstImgPath, imgWidth):
+def upScaleImage(imgPath, imgWidth):
+    upScaledImgPathPng = f"{imgPath}.png"
     cmd = [Const.upScayl,
-           "-i", srcImgPath,
-           "-o", dstImgPath,
+           "-i", imgPath,
+           "-o", upScaledImgPathPng,
            "-n", "realesr-animevideov3-x4",
            "-w", imgWidth]
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    upScaledImgPath = f"{Utils.clearExtension(dstImgPath)}.jpg"
+    upScaledImgPathJpg = f"{upScaledImgPathPng}.jpg"
     cmd = [Const.ffMpeg,
-           "-i", dstImgPath,
+           "-i", upScaledImgPathPng,
            "-q:v", "0",
-           upScaledImgPath]
+           upScaledImgPathJpg]
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    return upScaledImgPath
+    os.remove(upScaledImgPathPng)
+
+    return upScaledImgPathJpg
 
 
 def applyImage(imgPath, vidPath, outDir):

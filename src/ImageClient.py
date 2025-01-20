@@ -1,6 +1,5 @@
 import os
 import requests
-import shutil
 import yt_dlp
 
 import Const
@@ -18,9 +17,8 @@ def yDlImage(vidLink, vFileName, outDir):
     with yt_dlp.YoutubeDL(yDlOptions) as yDl:
         yDl.download([vidLink])
 
-    srcImgPath = os.path.join(outDir, f"{vFileName}.webp")
-    dstImgPath = os.path.join(outDir, f"{vFileName}.png")
-    return srcImgPath, dstImgPath
+    imgPath = os.path.join(outDir, f"{vFileName}.webp")
+    return imgPath
 
 
 def dlImage(imgLink, outDir):
@@ -29,12 +27,9 @@ def dlImage(imgLink, outDir):
     if r.status_code == 200:
         dlImgPath = os.path.basename(imgLink)
         srcImgPath = os.path.join(outDir, dlImgPath)
-        dstImgPath = os.path.join(outDir, f"{dlImgPath}.png")
-
         with open(srcImgPath, 'wb') as dlImg:
             for chunk in r.iter_content(1024):
                 dlImg.write(chunk)
-
-        return srcImgPath, dstImgPath
+        return srcImgPath
     else:
         raise Exception()
