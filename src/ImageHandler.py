@@ -4,7 +4,7 @@ import subprocess
 import Const
 
 
-def upScaleImage(imgPath, imgWidth):
+def upScaleImage(imgPath, imgWidth, imgFormat):
     upScaledImgPathPng = f"{imgPath}.png"
     cmd = [Const.upScayl,
            "-i", imgPath,
@@ -13,16 +13,23 @@ def upScaleImage(imgPath, imgWidth):
            "-w", imgWidth]
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    upScaledImgPathJpg = f"{upScaledImgPathPng}.jpg"
-    cmd = [Const.ffMpeg,
-           "-i", upScaledImgPathPng,
-           "-q:v", "0",
-           upScaledImgPathJpg]
-    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if imgFormat != "png":
+        if imgFormat:
+            upScaledImgPath = f"{upScaledImgPathPng}.{imgFormat}"
+        else:
+            upScaledImgPath = f"{upScaledImgPathPng}.jpg"
 
-    os.remove(upScaledImgPathPng)
+        cmd = [Const.ffMpeg,
+               "-i", upScaledImgPathPng,
+               "-q:v", "0",
+               upScaledImgPath]
+        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    return upScaledImgPathJpg
+        os.remove(upScaledImgPathPng)
+
+        return upScaledImgPath
+
+    return upScaledImgPathPng
 
 
 def applyImage(imgPath, vidPath, outDir):
