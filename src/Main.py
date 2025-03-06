@@ -15,8 +15,11 @@ imgWidthDefault = "3200"
 userVids = VidListReader.ReadVidList()
 print(f"Found {len(userVids)} Videos - Starting Download...")
 
+pDelimiter = "======"
+
 for userVid in userVids:
     print()
+    print(pDelimiter)
 
     if os.path.exists(os.path.join(outDir, f"{userVid.vidTitle}.mp3")):
         print(f"Skipping {userVid.vidTitle}.mp3 (Already Exists).")
@@ -83,5 +86,6 @@ for userVid in userVids:
     os.remove(imgPath)
     os.remove(upScaledImgPath)
 
+print(pDelimiter)
 print("\nPress Enter...")
 input()
