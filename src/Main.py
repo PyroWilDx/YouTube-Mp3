@@ -1,4 +1,5 @@
 import os
+import sys
 import yt_dlp
 
 import AudioClient
@@ -7,6 +8,9 @@ import ImageHandler
 import Utils
 import VidListReader
 import YouTubeClient
+
+sys.stdout.reconfigure(encoding='utf-8')
+sys.stderr.reconfigure(encoding='utf-8')
 
 outDir = "Out"
 imgNameDefault = "Image"
