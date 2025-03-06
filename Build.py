@@ -25,7 +25,7 @@ def createZip():
     if not os.path.exists(outFolder):
         os.makedirs(outFolder)
 
-    with zipfile.ZipFile(zipFilename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(zipFilename, "w", zipfile.ZIP_DEFLATED) as zipf:
         zipf.write(distExe, "YouTube-Mp3.exe")
 
         for foldername, subfolders, filenames in os.walk(binFolder):

@@ -3,7 +3,7 @@ import shlex
 
 def ReadVidList():
     userVids = []
-    with open("VidList.txt") as vidLinkFile:
+    with open("VidList.txt", encoding="utf-8") as vidLinkFile:
         for v in vidLinkFile:
             if len(v) == 0 or v[0] == "\n":
                 continue
