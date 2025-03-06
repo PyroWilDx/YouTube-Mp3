@@ -9,4 +9,7 @@ dist
 build
 *.spec
 
+# Build
+*.zip
+
 Out/
