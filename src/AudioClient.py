@@ -11,7 +11,7 @@ def dlAudio(vidLink, vidTitle, outDir):
 
     if r.status_code == 200:
         dlVidPath = os.path.basename(vidLink)
-        with open(dlVidPath, 'wb') as dlVid:
+        with open(dlVidPath, "wb") as dlVid:
             for chunk in r.iter_content(1024):
                 dlVid.write(chunk)
     else:
