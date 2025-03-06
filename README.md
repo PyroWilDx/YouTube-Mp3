@@ -33,16 +33,16 @@ Below is a list of the available options.
 > [!NOTE]
 > **Example**
 >
-> For the entry `https://youtu.be/oA0CpI0vCK4 Title="Mumei" ImgLink="https://wallpapercave.com/wp/wp9799581.png" ImgWidth="3600"`.
-> - The video `https://youtu.be/oA0CpI0vCK4` will be downloaded as an audio file named `Mumei.mp3`.
-> - The audio file will include an embedded image downloaded from `https://wallpapercave.com/wp/wp9799581.png`.
+> For the entry `https://youtu.be/oA0CpI0vCK4 Title="Mumei" ImgLink="https://i.imgur.com/oTKULzY.jpg" ImgWidth="3600"`.
+> - The video [`https://youtu.be/oA0CpI0vCK4`](https://youtu.be/oA0CpI0vCK4) will be downloaded as an audio file named `Mumei.mp3`.
+> - The audio file will include an embedded image downloaded from [`https://i.imgur.com/oTKULzY.jpg`](https://i.imgur.com/oTKULzY.jpg).
 > - The embedded image will have a width of `3600` pixels.
 
 ## Download
 
 <div align="center">
 
-| [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" width="60"/>](https://www.mediafire.com/file/wwxxm3pauu7ignx/YouTube-Mp3.zip/) |
+| [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" width="60"/>](https://github.com/PyroWilDx/YouTube-Mp3/releases/) |
 |---|
 
 </div>
