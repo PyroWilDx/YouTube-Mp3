@@ -27,7 +27,7 @@ def dlImage(imgLink, outDir):
     if r.status_code == 200:
         dlImgPath = os.path.basename(imgLink)
         srcImgPath = os.path.join(outDir, dlImgPath)
-        with open(srcImgPath, 'wb') as dlImg:
+        with open(srcImgPath, "wb") as dlImg:
             for chunk in r.iter_content(1024):
                 dlImg.write(chunk)
         return srcImgPath
