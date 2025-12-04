@@ -14,7 +14,7 @@ sys.stderr.reconfigure(encoding='utf-8')
 
 outDir = "Out"
 imgNameDefault = "Image"
-imgWidthDefault = "3200"
+imgWidthDefault = "2600"
 
 userVids = VidListReader.ReadVidList()
 print(f"Found {len(userVids)} Videos - Starting Download...")

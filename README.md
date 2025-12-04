@@ -36,7 +36,7 @@ Below is a list of the available options.
 
 - `ImgLink` &ndash; The link to a custom image to embed into the audio file. In case this option is not provided, the thumbnail of the YouTube video will be used.
 
-- `ImgWidth` &ndash; The width in pixels for the image to be upscaled. The height will be automatically calculated to maintain the aspect ratio. In case this option is not provided, the default value of `3200` will be used.
+- `ImgWidth` &ndash; The width in pixels for the image to be upscaled. The height will be automatically calculated to maintain the aspect ratio. In case this option is not provided, the default value of `2600` will be used.
 
 - `ImgFormat` &ndash; The format for the image to be converted. In case this option is not provided, the `JPEG` format will be used.
 
